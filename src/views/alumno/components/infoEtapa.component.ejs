@@ -1,0 +1,26 @@
+<div class="pt-2 mx-auto row col-12 justify-content-between d-flex flex-column flex-md-row border-bottom">
+    <input type="hidden" name="id_proyecto" value="<%= id_proyecto %>">
+    <input type="hidden" name="id_etapa" value="<%= etapa.id_etapa %>">
+    <div class="col-md-2 mb-2 pl-0 pr-0">
+        <a href="/alumno/misProyectos/<%= id_proyecto %>" class="btn btn-block btn-outline-secondary">Regresar al proyecto</a>
+    </div>
+    <div class="col-md-4 pl-0 pr-0">
+        <h2 class="text-md-left text-center"><%= etapa.nombre %></h2>
+    </div>
+    <div class="col-md-4 d-flex flex-wrap justify-content-between">
+        <div>
+            <p class="font-weight-bold">Fecha de inicio:</p>
+            <p><%= etapa.fecha_inicio %> </p>
+            <p class="font-weight-bold">Fecha de finalizacion:</p>
+            <p><%= etapa.fecha_fin || '-' %> </p>
+        </div>
+        <div>
+            <p class="font-weight-bold">Estado:</p>
+            <p><%= etapa.estado %> </p>
+        </div>
+    </div>
+    <div class="col-md-2 mb-2 pl-0 pr-0">
+        <a href="<%= `/alumno/misProyectos/${id_proyecto}/etapas/${etapa.id_etapa}/modificarEtapa` %> " class="btn btn-block btn-outline-primary">Editar etapa</a>
+        <button id="btnEliminarEtapa" class="btn btn-block btn-outline-danger">Eliminar etapa</button>
+    </div>
+</div>

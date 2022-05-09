@@ -1,0 +1,37 @@
+<div class="mt-3 border-bottom">
+    <div class="d-flex justify-content-around flex-wrap">
+        <div class="mb-3 d-flex flex-column align-items-center">
+            <p class="font-weight-bold">Proyecto</p>
+            <a href="/alumno/misProyectos/<%= entregable.Etapa.Proyecto.id_proyecto %>/"><%= entregable.Etapa.Proyecto.nombre_proyecto %></a>
+        </div>
+        <div class="mb-3 d-flex flex-column align-items-center">
+            <p class="font-weight-bold">Etapa</p>
+            <p><%= entregable.Etapa.nombre %></p>
+        </div>
+        <div class="mb-3 d-flex flex-column align-items-center">
+            <p class="font-weight-bold">Fecha asignación</p>
+            <p><%= entregable.fecha_asignacion %></p>
+        </div>
+        <div class="mb-3 d-flex flex-column align-items-center flex-wrap">
+            <p class="font-weight-bold">Fecha límite</p>
+            <p><%= entregable.fecha_limite ? new Date(entregable.fecha_limite).toLocaleString() : '-' %></p>
+        </div>
+        <div class="mb-3 d-flex flex-column align-items-center">
+            <p class="font-weight-bold">Estado</p>
+            <p><%= entregable.entregado ? 'ENTREGADO' : entregable.fechaLimiteVencida ? 'NO ENTREGADO' : 'PENDIENTE' %></p>
+        </div>
+        <div class="mb-3 d-flex flex-column align-items-center">
+            <p class="font-weight-bold">Rubrica</p>
+            <% if(entregable.url_rubrica) { %> 
+                <a href="<%= `${API_URL}entregables/${entregable.id_entregable}/rubrica` %>" download>
+                    <i class="fas fa-download"></i>
+                    <span>Descargar</p>
+                </a>
+            <% } %> 
+        </div>
+    </div>
+    <div class="mb-2 d-flex flex-column align-items-center">
+        <p class="font-weight-bold">Descripción del entregable</p>
+        <p class="text-justify"><%= entregable.descripcion %> </p>
+    </div>
+</div>

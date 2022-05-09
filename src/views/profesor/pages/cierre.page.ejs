@@ -1,0 +1,19 @@
+<%- include('../../template/head'); %>
+<div class="main-grid">
+    <%- include('../../template/header.ejs') %>
+    <main>
+        <section>
+            <main>
+                <%- include('../components/infoProyecto.ejs') %>
+                <%- include('../components/formCrearCierre') %>
+
+            </main>
+        </section>
+    </main>
+</div>
+<% if(entregable !== null){ %>
+    <script type="module" src="/public/js/calificar.js"></script>
+<% }else{ %>
+    <script type="module" src="/public/js/crearCierre.js"></script>
+<% } %> 
+<%- include('../../template/footer.ejs') %>

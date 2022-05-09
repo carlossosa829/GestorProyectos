@@ -1,0 +1,60 @@
+<% 
+    let pendientes = 0
+    let realizados = 0
+    let noRealizados = 0
+
+    for(let entregable of entregables){
+        if(entregable.entregado)
+            realizados++
+        else{
+            entregable.fechaLimiteVencida ?
+                noRealizados++ :
+                pendientes++
+        }
+    }
+%> 
+<section>
+    <p class="font-weight-bold">Resúmen de entregables</p>
+    <div class="d-flex justify-content-between flex-wrap mb-3">
+        <div>
+            <span>Entregables realizados: </span>
+            <span><%= realizados %></span>
+        </div>
+        <div>
+            <span>Entregables pendientes: </span>
+            <span><%= pendientes %></span>
+        </div>
+        <div>
+            <span>Entregables no realizados: </span>
+            <span><%= noRealizados %></span>
+        </div>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col" class="text-left">Etapa</th>
+                    <th scope="col" class="text-center">Entregable</th>
+                    <th scope="col">Estado</th>
+                    <th scope="col">Fecha límite</th>
+                    <th scope="col">Calificación</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for(let entregable of entregables) { %>
+                    <tr>
+                        <td scope="row"><%= entregable.etapa %></td>
+                        <td><%= entregable.nombre %></td>
+                        <td><%= entregable.entregado ? 'ENTREGADO' : entregable.fechaLimiteVencida ? 'NO ENTREGADO' : 'PENDIENTE' %></td>
+                        <td><%= new Date(entregable.fecha_limite).toLocaleString() %></td>
+                        <td><%= entregable.calificacion || '-' %></td>
+                        <td>
+                            <a href="/alumno/misProyectos/<%= id_proyecto %>/etapas/<%= entregable.id_etapa %>/entregables/<%= entregable.id_entregable %> " class="btn btn-primary">Ver entregable</a>
+                        </td>
+                    </tr>
+                <% } %> 
+            </tbody>
+        </table>
+    </div>
+</section>

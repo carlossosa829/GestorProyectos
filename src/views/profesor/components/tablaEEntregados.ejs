@@ -1,0 +1,28 @@
+<h3>Tareas entregadas</h3>
+<div class="table-responsive">
+    <table class="table mt-5 ">
+    <thead class="thead-primary text-center">
+        <tr>
+        <th class="text-left">Nombre</th>
+        <th class="text-left">Observaciones</th>
+        <th>Fecha asignacion</th>
+        <th>Fecha limite</th>
+        <th>Calificacion</th>
+        </tr>
+    </thead>
+    <tbody class="text-center">
+        <% if (!aEntregados.length){ %>
+            <tr><td colspan="4">No hay tareas entregadas</td></tr>
+        <% } else { %>
+            <% for (let entregado of aEntregados){ %>
+                <tr>
+                <td class="text-left"><%= entregado.nombre %></td>
+                <td class="text-left"><%= entregado.observaciones || '-' %></td>
+                <td><%= entregado.fecha_asignacion || '-' %></td>
+                <td><%= entregado.fecha_entrega || '-'%></td>
+                <td><%= entregado.calificacion || '-' %></td>
+                </tr>
+        <% }} %>
+    </tbody>
+    </table>
+</div>

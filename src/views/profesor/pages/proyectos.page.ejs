@@ -1,0 +1,15 @@
+<%- include('../../template/head'); %>
+<div class="main-grid">
+    <%- include('../../template/header.ejs') %>
+    <main>
+        <section>
+            <header>
+                <span class="title">PROYECTOS ACTIVOS</span>   
+            </header>
+            <main>
+                <%- include('../components/infoProyectoCard.ejs'),projects; %>
+            </main>
+        </section>
+    </main>
+</div>
+<%- include('../../template/footer.ejs') %>

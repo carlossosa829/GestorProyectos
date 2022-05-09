@@ -1,0 +1,18 @@
+<div class="row d-flex justify-content-around mb-5">
+    <% for(let subject of subjects) { %>
+        <div class="col-lg-3 col-md-5 col-sm-11 shadow m-3 d-flex flex-column justify-content-between">
+            <img class="card-img-top" src="/public/img/codigo.jpg" alt="Card image cap">
+            <div class="card-body d-flex flex-column justify-content-between">
+                <h5 class="card-title"><%= subject.nombre %></h5>
+                <p class="card-text"><strong>Periodo: </strong><%= subject.Pnombre %></p>
+                <p class="card-text"><strong>NRC: </strong><%= subject.nrc %></p>
+                <a href="/profesor/<%= subject.nrc %>" class="btn btn-primary">Ver proyectos activos</a>
+                <a href="/profesor/<%= subject.nrc %>/reporte" class="mt-2 btn btn-primary">Reporte de la clase</a>
+            </div>
+        </div>
+    <% } %>
+    <% if(subjects.length === 0) { %>
+        <p class="title">Aún no cuenta con materias. Contacte al administrador.</p>
+    <% } %>
+</div>
+      

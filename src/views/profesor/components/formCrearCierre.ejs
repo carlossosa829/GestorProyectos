@@ -1,0 +1,158 @@
+<h3>Trabajo final</h3>
+<div class="container mt-5">
+    <% if(!entregable){ %>
+    <form action="<%= api %>archivos/<%= id_proyecto %>/?cierre=true" method="POST" enctype="multipart/form-data">
+    <div class="row">
+        <div class="col-8">
+            <h3>Asignaci&oacute;n de entregable final</h3>
+        </div>
+        
+        <div class="col-4">
+            <input type="submit" class="btn btn-primary btn-block" value="Crear">
+        </div>
+    </div>
+        <div class="form-group mt-5">
+            <div class="form-row">
+                <div class="col-8">
+                    <label for="nombre-entregable">Nombre del entregable</label>
+                    <input type="text" class="form-control" name="nombre-entregable" required>
+                </div>
+                <div class="ml-2 col-4 row align-items-center">
+                    <label for="fecha-entregable">Fecha de entrega</label>
+                    <input type="date" class="form-control" name="fecha-entregable" required>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="instrucciones-entregable">Instrucciones</label>
+            <textarea  id="" cols="30" rows="5" class="form-control" name="instrucciones-entregable" required></textarea>
+        </div>
+        <div class="form-group">
+            <label for="rubrica">Adjuntar rubrica</label>
+            <input type="file" class="form-control-file" name="rubrica" id="rubrica">
+        </div>
+    </form>
+    <% } else { %>
+        <div class="row d-flex justify-content-around mt-4 ml-0 mr-0">
+            <div class="col-md-5 mb-4 shadow pl-0 pr-0">
+                <div class="div p-1 bg-primary mb-4 w-100">
+                    <p class="title text-center text-white">ENTREGA</p>
+                </div>
+                
+                <% if(entregable[0].entregado){ %>
+                    <div class="mb-2">
+                        <div class="mb-3 d-flex flex-column align-items-center">
+                            <div hidden id="id_proyecto"><%= id_proyecto %></div>
+                            <p class="font-weight-bold">Fecha entrega</p>
+                            <span class="mr-3"><%= entregable[0].fecha_entrega %></span>
+                        </div>
+                        <div class="mb-3 d-flex flex-column align-items-center">
+                            <p class="font-weight-bold">Archivo entregado</p>
+                            <div class="mb-2">
+                                <i class="fas fa-file-alt mr-1"></i>
+                                <span class="mr-3">
+                                    <% if(entregable[0].url_entregable === null){ %> 
+                                        No se entrego ningun archivo 
+                                    <% }else{ %> 
+                                        <%= entregable[0].url_entregable.split('/').reverse()[0]  %>
+                                    <% } %>
+                                </span>
+                            </div>
+                        </div>
+                        <% if(entregable.url_entregable !== null){ %>
+                        <a href="<%= `${api}entregables/${entregable[0].id_entregable}/entregable` %>" download class="btn btn-primary btn-block">
+                            <i class="fas fa-download"></i>
+                            <span>Descargar</span>
+                        </a>
+                        <% }else{ %>
+                            <div class="mb-3 d-flex flex-column align-items-center">
+                                <p class="font-weight-bold">A&uacute;n no se ha entregado el trabajo final</p>
+                            </div>
+                        <% } %>
+                        <% if(entregable[0].url_entregable !== null){ %>
+                        <% const archivo = entregable[0].url_entregable.split('/').reverse()[0]; %>
+                        <% if(archivo.slice(archivo.lastIndexOf('.'),archivo.length) === '.pdf'){ %> 
+                            <a
+                                href="<%=`${api}entregables/${entregable[0].id_entregable}/verEntregable` %>"
+                                class="btn btn-primary btn-block"
+                                target="_blank"
+                                >
+                                <i class="fas fa-download"></i>
+                                <span>Visualizar</span>
+                            </a>
+                            <% }} %>
+                       
+                    </div>
+                <% }else{ %>
+                    <div class="d-flex flex-column align-items-center">
+                        <p>Trabajo asignado. A&uacute;n no se ha entregado el trabajo final</p>
+                    </div>
+                <% } %>
+
+            </div>
+            <div class="col-md-5 mb-4 shadow pl-0 pr-0">
+                <div class="div p-1 bg-primary mb-4 w-100">
+                    <p class="title text-center text-white">CALIFICAR</p>
+                </div>
+                <% if(entregable[0].entregado && !entregable[0].devuelto){ %>
+                <form action="<%= `${api}entregables/calificar/${entregable[0].id_entregable}` %>" method="POST">
+                  <div class="d-flex flex-column align-items-center">
+                    <div class="form-group">
+                      <label for="observaciones">Observaciones</label>
+                      <textarea
+                        class="form-control"
+                        name="observaciones"
+                        id=""
+                        cols="30"
+                        rows="4"
+                        placeholder="Capture aquí sus observaciones"
+                      ></textarea>
+                    </div>
+                  </div>
+                  <div class="d-flex flex-column align-items-center">
+                    <div class="form-group row">
+                      <div class="col">
+                        <label for="calificacion">Calificac&iacute;on</label>
+                      </div>
+                      <div class="col">
+                        <input
+                          class="form-control"
+                          type="number"
+                          name="calificacion"
+                          min="0"
+                          max="10"
+                          step="0.1"
+                          required
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="d-flex flex-column align-items-center">
+                    <div class="form-group">
+                      <input
+                        type="submit"
+                        class="btn btn-primary btn-block"
+                        value="Asignar calififacion"
+                      />
+                    </div>
+                  </div>
+                </form>
+                <% }else if(!entregable[0].calificacion){ %>
+                    <div class="d-flex flex-column align-items-center">
+                        <p>No puede evaluar un trabajo no entregado</p>
+                    </div>
+                <% }else if(entregable[0].devuelto){ %>
+                    <div class="d-flex flex-column align-items-center">
+                        <p class="font-weight-bold">Calificaci&oacute;n</p>
+                        <span class="mr-3"><%= entregable[0].calificacion %></span>
+                        <p class="font-weight-bold">Observaciones</p>
+                        <span class="text-center"><%= entregable[0].observaciones %></span>
+                        <div class="div p-1 mb-4 w-100">
+                            <p class="title text-center ">CALIFICADO</p>
+                        </div>
+                    </div>
+                    <% } %>
+              </div>
+        </div>
+        <% } %>
+</div>

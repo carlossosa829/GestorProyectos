@@ -1,0 +1,20 @@
+<%- include('../../template/head.ejs') %>
+<div class="main-grid">
+    <%- include('../../template/header.ejs') %>
+    <main>
+        <section class="mt-2">
+            <main>
+                <section>
+                    <header>
+                        <span class="text-center title">Mis Tareas</span>  
+                    </header>
+                    <main>
+                      <%- include('../components/listaTareas.component.ejs') %>                    
+                    </main>
+                </section>
+            </main>
+        </section>
+    </main>
+</div>
+<script src="/public/js/notificaciones.js" type="module"></script>
+<%- include('../../template/footer.ejs') %>

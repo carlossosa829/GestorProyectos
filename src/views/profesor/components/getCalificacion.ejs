@@ -1,0 +1,24 @@
+<%
+const FECHA = new Date();
+let aEntregados = [];
+let aPendientes = [];
+let aVencidos = [];
+let promedio = 0.0;
+for(item of array){
+    if(item.entregado){
+        if(new Date(item.fecha_entrega) <= new Date(item.fecha_limite)){
+            aEntregados.push(item)
+            promedio+=item.calificacion
+        }
+    }else if(item.fecha_entrega === null ){
+        if(FECHA <= new Date(item.fecha_limite))
+            aPendientes.push(item)
+        else{
+            aVencidos.push(item)
+            promedio+=item.calificacion
+        }
+    }
+}
+promedio/=aEntregados.length + aVencidos.length;
+%>
+<td rowspan="3" class="display-3"><%= isNaN(promedio) ? 0.0 : promedio.toFixed(2) %></td>

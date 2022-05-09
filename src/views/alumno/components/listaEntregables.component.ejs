@@ -1,0 +1,28 @@
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col" class="text-left">Nombre</th>
+                <th scope="col" class="text-center">Fecha asignación</th>
+                <th scope="col">Fecha límite</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Calificación</th>
+                <th scope="col">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for(let entregable of entregables) {%> 
+                <tr>
+                    <td scope="row" class="text-left"><%= entregable.nombre %></td>
+                    <td><%= entregable.fecha_asignacion %></td>
+                    <td><%= new Date(entregable.fecha_limite).toLocaleString() %></td>
+                    <td><%= entregable.entregado ? 'ENTREGADO' : entregable.fechaLimiteVencida ? 'NO ENTREGADO' : 'PENDIENTE' %></td>
+                    <td><%= entregable.calificacion || '-' %></td>
+                    <td>
+                        <a href="entregables/<%= entregable.id_entregable %> " class="btn btn-primary">Ver entregable</a>
+                    </td>
+                </tr>
+            <% } %> 
+        </tbody>
+    </table>
+</div>

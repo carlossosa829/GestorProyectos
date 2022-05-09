@@ -1,0 +1,28 @@
+<form action="" class="row justify-content-center mx-2" method="POST">
+    <div class="col-sm-12 col-md-10">
+      <fieldset class="row border mb-4">
+        <legend class="font-weight-bold w-auto"></legend>
+        <div class="form-group col-md-6 col-sm-12">
+          <label for="nombretarea" class="font-weight-bold">Nombre de la tarea:</label>
+          <input type="text" class="form-control" id="nombretarea" placeholder="Introducir nombre de la tarea" name="nombre_tarea"  required>
+        </div>
+        <div class="form-group col-md-6 col-sm-12">
+          <label for="descripcion" class="font-weight-bold">Descripción:</label>
+          <input type="text" class="form-control" id="descripcion" placeholder="Introducir descripción de la tarea" name="descripcion" required>
+        </div>
+        <div class="form-group col-md-6 col-sm-12">
+          <label for="fecha_inicio" class="font-weight-bold">Fecha de Inicio:</label>
+          <input type="date" class="form-control" id="fecha_inicio" min="2018-01-01" max="2021-12-31" name="fecha_inicio" required>
+        </div>
+        <div class="form-group col-md-6 col-sm-12">
+          <label for="fecha_limite" class="font-weight-bold">Fecha límite:</label>
+          <input type="date" class="form-control" id="fecha_limite" min="2018-01-01" max="2021-12-31" name="fecha_limite" required>
+        </div>
+      </fieldset>
+      <%- include('./equipo.component.ejs') %> 
+      <div class="row">
+        <button type="submit" class="col btn btn-primary mr-2 my-4">Crear Tarea</button>
+        <a href="/alumno/misTareas" class="col btn btn-outline-secondary ml-2 my-4">Cancelar</a>
+      </div>
+    </div> 
+  </form>

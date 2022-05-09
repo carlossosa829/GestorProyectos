@@ -1,0 +1,41 @@
+<div class="col-md-5 mb-4 shadow pl-0 pr-0">
+    <div class="div p-1 bg-primary mb-4 w-100">
+        <p class="title text-center text-white">Entrega</p>
+    </div>
+    <% if(entregable.entregado) {%>
+        <div class="mb-2">
+            <div class="mb-3 d-flex flex-column align-items-center">
+                <p class="font-weight-bold">Fecha entrega</p>
+                <span class="mr-3"><%= entregable.fecha_entrega %></span>
+            </div>
+            <div class="mb-3 d-flex flex-column align-items-center">
+                <p class="font-weight-bold">Archivo entregado</p>
+                <div class="mb-2">
+                    <i class="fas fa-file-alt mr-1"></i>
+                    <span class="mr-3"><%= entregable.url_entregable.split('/').reverse()[0] %></span>
+                </div>
+            </div>
+            <a href="<%= `${API_URL}entregables/${entregable.id_entregable}/entregable` %>" download class="btn btn-primary btn-block">
+                <i class="fas fa-download"></i>
+                <span>Descargar</span>
+            </a>
+        </div>
+    <% } else {%> 
+        <% if(entregable.fechaLimiteVencida) { %>
+            <div class="d-flex flex-column align-items-center">
+                <p>La tarea ha caducado.</p>
+                <p>Ya no se reciben más respuestas</p>
+                <p class="title">:(</p>
+            </div>
+        <% } else {%>  
+            <form action="POST" class="mb-2 d-flex flex-column align-items-center mx-auto">
+                <input type="hidden" name="id_entregable" value="<%= entregable.id_entregable %>">
+                <div class="form-group">
+                    <label for="entregable" class="font-weight-bold">Archivo</label>
+                    <input type="file" name="entregable" id="entregable" class="form-control-file">
+                </div>
+                <input type="submit" value="Enviar archivo" class="btn btn-primary">
+            </form>
+        <% } %>  
+    <% } %> 
+</div>

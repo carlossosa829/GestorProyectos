@@ -1,0 +1,16 @@
+<div class="sticky-top">
+    <ul class="h-nav bg-white shadow-sm">
+        <li>
+            <a href="/alumno/misProyectos/<%= id_proyecto %>/etapas/<%= etapa.id_etapa %>/entregables" class="nav-option p-2 <%= etapaMenuSelection == 'Entregables' && 'active' %>">
+                <i class="far fa-file-word"></i>
+                <span>Entregables</span>
+            </a>
+        </li>
+        <li>
+            <a href="/alumno/misProyectos/<%= id_proyecto %>/etapas/<%= etapa.id_etapa %>/tareas" class="nav-option <%= etapaMenuSelection == 'Tareas' && 'active' %>">
+                <i class="fas fa-tasks"></i>
+                <span>Tareas</span>
+            </a>
+        </li>
+    </ul>
+</div>

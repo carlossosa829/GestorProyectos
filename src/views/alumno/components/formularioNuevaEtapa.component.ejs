@@ -1,0 +1,19 @@
+<form action="" class="row justify-content-center mx-2" method="POST">
+    <div class="col-sm-12 col-md-10">
+      <fieldset class="row border pt-3 mb-4">
+        <input type="hidden" name="id_proyecto" value="<%= proyecto.id_proyecto %>">
+        <div class="form-group col-md-6 col-sm-12">
+          <label for="nombre" class="font-weight-bold">Nombre de la etapa:</label>
+          <input type="text" class="form-control" id="nombre" placeholder="Introducir nombre del proyecto" name="nombre" required>
+        </div>
+        <div class="form-group col-md-6 col-sm-12">
+          <label for="fecha_inicio" class="font-weight-bold">Fecha de Inicio:</label>
+          <input type="date" class="form-control" id="fecha_inicio" min="2018-01-01" max="2021-12-31" name="fecha_inicio" required>
+        </div>
+      </fieldset>
+      <div class="row">
+        <button type="submit" class="col btn btn-primary mr-2 my-4">Crear Etapa</button>
+        <a href="/alumno/misProyectos/<%= proyecto.id_proyecto %>/etapas" class="col btn btn-outline-secondary ml-2 my-4">Cancelar</a>
+      </div>
+    </div>  
+  </form>

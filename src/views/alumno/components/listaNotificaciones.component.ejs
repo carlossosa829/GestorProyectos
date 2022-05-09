@@ -1,0 +1,48 @@
+<%
+    const notificacionesLeidas = notificaciones.filter(notificacion => notificacion.leida)
+    const notificacionesNoLeidas = notificaciones.filter(notificacion => !notificacion.leida)
+%> 
+<div class="row">
+    <div class="col-sm-11 col-md-8 mx-auto mb-4" id="notificacionesNoLeidas">
+        <p class="font-weight-bold">No leidas:</p>
+        <% for(let notificacion of notificacionesNoLeidas){ %>
+            <% let imgPath = notificacion.descripcion.includes('equipo') ?
+                '/public/img/codigo.jpg' : 
+                '/public/img/user.jpg' %>
+            <div class="row list-item ml-0 mr-0 mb-4">
+                <input type="hidden" name="id_notificacion" value="<%= notificacion.id_notificacion %>">
+                <a href="<%= notificacion.url %> " role="button" class="col-10 bg-light shadow-sm rounded text-decoration-none position-relative p-3">
+                    <div class="d-flex align-items-center">
+                        <img class="mr-1" src="<%= imgPath %>" alt="img">
+                        <span><%= notificacion.descripcion %></span>
+                    </div>
+                    <p class="position-absolute text-secondary" style="right: 0; font-size: 0.8rem;"><%= new Date(notificacion.fecha_notificacion).toLocaleString() %> </p>
+                </a>
+                <div class="col-2 p-3">
+                    <button type="button" class="btn btn-primary">X</button>
+                </div>
+            </div>
+        <% } %> 
+    </div>
+    <div class="col-sm-11 col-md-8 mx-auto mb-4" id="notificacionesLeidas">
+        <p class="font-weight-bold">Leidas:</p>
+        <% for(let notificacion of notificacionesLeidas){ %>
+            <% let imgPath = notificacion.descripcion.includes('equipo') ?
+                '/public/img/codigo.jpg' : 
+                '/public/img/user.jpg' %>
+            <div class="row list-item ml-0 mr-0 mb-4">
+                <input type="hidden" name="id_notificacion" value="<%= notificacion.id_notificacion %>">
+                <a href="<%= notificacion.url %> " role="button" class="col-10 bg-light shadow-sm rounded text-decoration-none position-relative p-3">
+                    <div class="d-flex align-items-center">
+                        <img class="mr-1" src="<%= imgPath %>" alt="img">
+                        <span><%= notificacion.descripcion %></span>
+                    </div>
+                    <p class="position-absolute text-secondary" style="right: 0; font-size: 0.8rem;"><%= new Date(notificacion.fecha_notificacion).toLocaleString() %> </p>
+                </a>
+                <div class="col-2 p-3">
+                    <button type="button" class="btn btn-primary">X</button>
+                </div>
+            </div>
+        <% } %> 
+    </div>
+</div>

@@ -1,0 +1,23 @@
+<%- include('../../template/head.ejs') %>
+<div class="main-grid">
+    <%- include('../../template/header.ejs') %>
+    <main>
+        <section class="mt-2">
+            <%- include('../components/infoProyecto.component.ejs') %>
+            <%- include('../components/navegacionProyecto.component.ejs') %>
+            <main>
+                <section>
+                    <header>
+                        <span class="text-center title">Nueva etapa de proyecto</span>
+                    </header>
+                    <main>
+                        <%- include('../components/formularioNuevaEtapa.component.ejs') %>
+                    </main>
+                </section>
+            </main>
+        </section>
+    </main>
+</div>
+<script src="/public/js/nuevaEtapa.js" type="module"></script>
+<script src="/public/js/eliminarProyecto.js" type="module"></script>
+<%- include('../../template/footer.ejs') %>

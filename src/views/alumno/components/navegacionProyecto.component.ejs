@@ -1,0 +1,22 @@
+<div class="sticky-top">
+    <ul class="h-nav bg-white shadow-sm">
+        <li>
+            <a href="/alumno/misProyectos/<%= proyecto.id_proyecto %>/etapas#etapas" class="nav-option p-2 <%= projectMenuSelection == 'Etapas' && 'active' %>">
+                <i class="fas fa-recycle"></i>
+                <span>Etapas</span>
+            </a>
+        </li>
+        <li>
+            <a href="/alumno/misProyectos/<%= proyecto.id_proyecto %>/equipo#equipo" class="nav-option <%= projectMenuSelection == 'Equipo' && 'active' %>">
+                <i class="fas fa-users"></i>
+                <span>Equipo</span>
+            </a>
+        </li>
+        <li>
+            <a href="/alumno/misProyectos/<%= proyecto.id_proyecto %>/resumen#resumen" class="nav-option <%= projectMenuSelection == 'Resúmen' && 'active' %>">
+                <i class="fas fa-clipboard"></i>
+                <span>Resúmen</span>
+            </a>
+        </li>
+    </ul>
+</div>

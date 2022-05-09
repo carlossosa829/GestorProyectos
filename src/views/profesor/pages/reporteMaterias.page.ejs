@@ -1,0 +1,101 @@
+<%- include('../../template/head'); %>
+<div class="main-grid">
+    <%- include('../../template/header.ejs') %>
+    <main>
+        <section>
+            <header>
+                <span class="title">Reporte general: <%= proyectos[0].nombre %></span>   
+            </header>
+            <main>
+                
+                <% 
+                        let equipos = [];
+                        id_proyecto = alumnos[0].id_proyecto
+                        let array = [];
+                        for(let index = 0; index < alumnos.length; index++){
+                            if(alumnos[index].id_proyecto === id_proyecto)
+                                array.push(alumnos[index])
+                            else{
+                                equipos.push(array)
+                                array=[];
+                                id_proyecto = alumnos[index].id_proyecto;
+                                array.push(alumnos[index]);
+                            }
+                        }
+                        equipos.push(array)
+
+                        let Eequipos = [];
+                        id_proyecto = entregables[0].id_proyecto
+                        let Earray = [];
+                        for(let index = 0; index < entregables.length; index++){
+                            if(entregables[index].id_proyecto === id_proyecto)
+                                Earray.push(entregables[index])
+                            else{
+                                Eequipos.push(Earray)
+                                Earray=[];
+                                id_proyecto = entregables[index].id_proyecto;
+                                Earray.push(entregables[index]);
+                            }
+                        }
+                        Eequipos.push(Earray)
+
+                       
+                %>
+                <div class="d-flex flex-wrap justify-content-around">
+                    <div class="d-flex flex-column align-items-center">
+                        <p class="font-weight-bold">Alumnos inscritos: </p>
+                        <p><%= alumnos.length %></p>
+                    </div>
+                    <div class="d-flex flex-column align-items-center">
+                        <p class="font-weight-bold">Equipos creados:</p>
+                        <p><%= equipos.length %></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <table class="table table-responsive-xl table-borderless">
+                            <thead>
+                                <tr>
+                                    <th>&nbsp;</th>
+                                    <th>Matr&iacute;cula</th>
+                                    <th class="text-left">Nombre</th>
+                                    <th>Calificaci&oacute;n</th>
+                                    <th>&nbsp;</th>
+                                </tr>
+                            </thead>
+                    <tbody>
+                        <% for(let i=0; i < proyectos.length; i++){ %>
+                            <tr class="border">
+                                <th scope="row" colspan="5">
+                                    <a href="/profesor/details/<%= proyectos[i].id_proyecto %>"><%= proyectos[i].nombre_proyecto %></a>
+                                </th>
+                            </tr>
+                            <% for(let j=0; j < equipos[i].length; j++){ %>
+                                <tr class="border-right border-left">    
+                                    
+                                    <td class="border-0"></td>
+                                    <td class="border-0"><%= equipos[i][j].matricula %></td>
+                                    <td class="d-flex align-items-center border-0">
+                                        
+                                        <div class="pl-3">
+                                            <span><%= `${equipos[i][j].nombre} ${equipos[i][j].paterno} ${equipos[i][j].materno}` %></span>
+                                        </div>
+                                    </td>
+                                    <% if(!j){ %>
+                                        <%- include('../components/getCalificacion.ejs', {array: Eequipos[i] }) %>.
+                                    <% }else{ %>
+                                        <td class="border-0"></td>
+                                    <% } %> 
+                                    <td class="border-0"></td>
+                                    <% } %>   
+                                </tr>
+                            <% } %>
+                    </tbody>
+                  </table>
+                  </div>
+                  </div>
+            </main>
+        </section>
+    </main>
+</div>
+<%- include('../../template/footer.ejs') %>

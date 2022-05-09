@@ -1,0 +1,28 @@
+<%- include('../../template/head.ejs') %>
+<div class="main-grid">
+    <%- include('../../template/header.ejs') %>
+    <main>
+        <section class="mt-2">
+            <main>
+                <section>
+                    <header>
+                        <span class="text-center title">Mis Notificaciones</span>
+                    </header>
+                    <main>
+                        <input type="hidden" name="id_usuario" value="<%= id_usuario %>">
+                        <% if(notificaciones.length === 0){ %>
+                            <div class="d-flex flex-column align-items-center">
+                                <span>No tienes notificaciones por el momento</span>
+                                <span class="title">:)</span>
+                            </div>
+                        <% }else { %>
+                            <%- include('../components/listaNotificaciones.component.ejs') %> 
+                        <% } %>
+                    </main>
+                </section>
+            </main>
+        </section>
+    </main>
+</div>
+<script src="/public/js/notificaciones.js" type="module"></script>
+<%- include('../../template/footer.ejs') %>

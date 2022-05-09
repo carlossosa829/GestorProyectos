@@ -1,0 +1,69 @@
+<%- include('../../template/head'); %>
+<div class="main-grid">
+    <%- include('../../template/header.ejs') %>
+    <main>
+        <section>
+            <main>
+                <%- include('../components/infoProyecto') %>
+                <section>
+                    <header>
+                        <span class="text-center title">Reporte general</span>
+                    </header>
+                </section>
+                <div class="d-flex flex-wrap justify-content-around">
+                    <div class="d-flex flex-column align-items-center">
+                        <p class="font-weight-bold">Total de entregables</p>
+                        <p><%= entregables.length || 0 %> </p>
+                    </div>
+                    <div class="d-flex flex-column align-items-center">
+                        <% 
+                            const FECHA = new Date();
+                            let aEntregados = [];
+                            let aPendientes = [];
+                            let aVencidos = [];
+                            let promedio = 0.0;
+                            for(entregable of entregables){
+                                if(entregable.entregado){
+                                    if(new Date(entregable.fecha_entrega) <= new Date(entregable.fecha_limite)){
+                                        aEntregados.push(entregable)
+                                        promedio+=entregable.calificacion
+                                    }
+                                }else if(entregable.fecha_entrega === null ){
+                                    if(FECHA <= new Date(entregable.fecha_limite))
+                                        aPendientes.push(entregable)
+                                    else{
+                                        aVencidos.push(entregable)
+                                        promedio+=entregable.calificacion
+                                    }
+                                }
+                            }
+                            promedio/=aEntregados.length + aVencidos.length;
+                        %> 
+                        <p class="font-weight-bold">Calificaci&oacute;n general</p>
+                        <p><%= isNaN(promedio) ? 0.0 : promedio.toFixed(2) %></p>
+                    </div>
+                    <div class="d-flex flex-column align-items-center">
+                        <p class="font-weight-bold">Entregables entregados</p>
+                        <p><%= aEntregados.length %></p>
+                    </div>
+                    <div class="d-flex flex-column align-items-center"> 
+                        <p class="font-weight-bold">Entregables pendientes</p>
+                        <p><%= aPendientes.length %></p>
+                    </div>
+                    <div class="d-flex flex-column align-items-center"> 
+                        <p class="font-weight-bold">Entregables vencidos</p>
+                        <p><%= aVencidos.length %></p>
+                    </div>
+                </div>
+                <div class="container mt-5  col-sm-12">
+
+                    <%- include('../components/tablaEEntregados', {aEntregados}) %>
+                    <%- include('../components/tablaEPendientes', {aPendientes}) %>
+                    <%- include('../components/tablaEVencidos', {aVencidos}) %>
+                      
+                </div>
+            </main>
+        </section>
+    </main>
+</div>
+<%- include('../../template/footer.ejs') %>

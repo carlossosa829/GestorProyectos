@@ -1,0 +1,27 @@
+<%- include('../../template/head'); %>
+<div class="main-grid">
+    <%- include('../../template/header.ejs') %>
+    <main>
+        <section>
+            <main>
+                <%- include('../components/infoProyecto.ejs') %>
+                <div class="container mt-5  col-sm-12">
+                    <div class="row ">
+                        <div class="col-lg-10 col-md-7 col-sm-8 col-12 justify-content-start">
+                            <h3>Tareas asignadas</h5>
+                        </div>
+                        <div class="col-lg-2 col-md-5 col-sm-4 col-12 justify-content-end">
+                            <a href="/profesor/creartarea/<%= detalles.id_proyecto %>">
+                            <button class="btn btn-primary btn-block">
+                                Crear nueva tarea
+                            </button>
+                        </a>
+                        </div>
+                    </div>
+                    <%- include('../components/tablaEntregables.ejs') %>
+                </div>
+            </main>
+        </section>
+    </main>
+</div>
+<%- include('../../template/footer.ejs') %>

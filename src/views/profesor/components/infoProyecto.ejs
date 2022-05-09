@@ -1,0 +1,18 @@
+<div class="pt-2 mx-auto row col-12 justify-content-between d-flex flex-column flex-md-row border-bottom">
+    <div class="col-md-2 mb-2">
+        <a href="/profesor/details/<%= detalles.id_proyecto %>" class="btn btn-block btn-outline-secondary">Ir a detalles</a>
+    </div>
+    <input type="hidden" id="id_proyecto" name="id_proyeceto" value="<%= detalles.id_proyecto %>">
+    <div class="col-md-4 justify-text">
+        <h2><%= detalles.nombre_proyecto %></h2>
+        <p class="text-justify"><%= detalles.descripcion %></p>
+    </div>
+    <div class="col-md-4 d-flex flex-wrap justify-content-between">
+        <div class="">
+            <p class="font-weight-bold">Fecha inicio:</p>
+            <p><%= detalles.fecha_inicio %></p>
+            <p class="font-weight-bold">Fecha límite:</p>
+            <p><%= detalles.fecha_limite || '-' %></p>
+        </div>
+    </div>
+</div>

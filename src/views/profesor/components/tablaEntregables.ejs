@@ -1,0 +1,41 @@
+<table class="table mt-5 table-responsive">
+    <thead class="thead-primary text-center">
+      <tr>
+        <th class="text-left">Nombre</th>
+        <th class="text-left">Descripcion</th>
+        <th>Fecha asignacion</th>
+        <th>Estado</th>
+        <th>Calificacion</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+
+    <tbody>
+    <tr>
+        
+        <% if (!Object.values(entregables).length){ %>
+        <td colspan="6"><h3>A&uacute;n no ha asignado tareas</h3></td>
+        <% }else{ %>
+        <% entregables.forEach(entregable =>{ %>
+      
+        <td class="text-left"><%= entregable.nombre %></td>
+        <td class="text-left"><%= entregable.descripcion %></td>
+        <td><%= entregable.fecha_asignacion %></td>
+        <td><%= entregable.entregado? "ENTREGADO" : "ASIGNADO" %></td>
+        <td><%= entregable.calificacion || '-' %></td>
+        <td><% if(entregable.entregado && !entregable.devuelto && !entregable.calificacion && entregable.etapa !== 'CIERRE'){ %>
+          <a href="/profesor/calificar/<%= `${detalles.id_proyecto}/${entregable.id_entregable}` %>" class="text-white">
+            <button class="btn btn-primary">CALIFICAR</button>
+          </a>
+          <% }else if(entregable.entregado && !entregable.devuelto && !entregable.calificacion && entregable.etapa === 'CIERRE'){ %>
+            <a href="/profesor/cierre/<%= `${detalles.id_proyecto}` %>" class="text-white">
+              <button class="btn btn-primary">CALIFICAR</button>
+            </a>
+          <% }else { '-' } %> 
+            
+
+        </td>
+      </tr>
+    <% })} %>
+    </tbody>
+  </table>

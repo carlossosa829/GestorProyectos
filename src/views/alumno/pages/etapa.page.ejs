@@ -1,0 +1,42 @@
+<%- include('../../template/head.ejs') %>
+<div class="main-grid">
+    <%- include('../../template/header.ejs') %>
+    <main>
+        <section class="mt-2">
+            <%- include('../components/infoEtapa.component.ejs') %>
+            <%- include('../components/navegacionEtapa.component.ejs') %>
+            <main>
+                <section>
+                    <header>
+                        <span class="text-center title">Entregables</span>
+                    </header>
+                    <main>
+                        <div class="d-flex flex-wrap justify-content-around">
+                            <div class="d-flex flex-column align-items-center">
+                                <p class="font-weight-bold">Total de entregables</p>
+                                <p><%= entregables.length || 0 %> </p>
+                            </div>
+                            <div class="d-flex flex-column align-items-center">
+                                <% 
+                                    //VERIFICAR SI YA HAN CADUCADO LOS ENTREGABLES
+                                    let calificacion = 0
+                                    for(let entregable of entregables){
+                                        entregable.fechaLimiteVencida = new Date(entregable.fecha_limite) <= new Date()
+
+                                        if(entregable.entregado)
+                                            calificacion += entregable.calificacion
+                                    }
+                                %> 
+                                <p class="font-weight-bold">Calificación promedio</p>
+                                <p><%= calificacion >= 0 ? `${calificacion} / ${entregables.length * 10}.00` : '-' %></p>
+                            </div>
+                        </div>
+                        <%- include('../components/listaEntregables.component.ejs') %>
+                    </main>
+                </section>
+            </main>
+        </section>
+    </main>
+</div>
+<script src="/public/js/eliminarEtapa.js" type="module"></script>
+<%- include('../../template/footer.ejs') %>

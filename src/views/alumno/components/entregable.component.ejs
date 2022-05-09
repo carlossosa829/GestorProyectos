@@ -1,0 +1,20 @@
+<section class="mt-2">
+    <div class="row ml-0 mr-0 border-bottom align-items-center d-flex flex-column flex-md-row">
+        <div class="col-md-2 mb-2 pl-0 pr-0 mr-2">
+            <a href="/alumno/misProyectos/<%= entregable.Etapa.Proyecto.id_proyecto %>/etapas/<%= entregable.Etapa.id_etapa %>" class="btn btn-block btn-outline-secondary">Regresar a la etapa</a>
+        </div>
+        <p class="title text-center text-md-left col-md-9 pb-2 pl-0 pr-0 m-0">Entregable: <%= entregable.nombre %> </p>
+    </div>
+    
+    <div id="detalles">
+        <% 
+            // DEFINIR SI LA TAREA HA SIDO TARDIA
+            entregable.fechaLimiteVencida = new Date(entregable.fecha_limite) <= new Date() 
+        %> 
+        <%- include('./infoEntregable.component.ejs') %> 
+        <div class="row d-flex justify-content-around mt-4 ml-0 mr-0">
+            <%- include('./entregable-entrega.component.ejs') %> 
+            <%- include('./entregable-recepcion.component.ejs') %> 
+        </div>
+    </div>
+</section>

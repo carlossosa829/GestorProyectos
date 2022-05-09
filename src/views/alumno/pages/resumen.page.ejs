@@ -1,0 +1,32 @@
+<%- include('../../template/head.ejs') %>
+<div class="main-grid">
+    <%- include('../../template/header.ejs') %>
+    <main>
+        <section class="mt-2">
+            <%- include('../components/infoProyecto.component.ejs') %>
+            <%- include('../components/navegacionProyecto.component.ejs') %>
+            <main>
+                <% 
+                    //VERIFICAR SI YA HAN CADUCADO LOS ENTREGABLES
+                    let calificacionGeneral = 0
+                    for(let entregable of entregables){
+                        entregable.fechaLimiteVencida = new Date(entregable.fecha_limite) <= new Date()
+                        calificacionGeneral += entregable.calificacion || 0
+                    }
+                %> 
+                <section id="resumen">
+                    <header>
+                        <span class="text-center title">Calificación General</span>
+                        <span class="text-center title"><%= `${calificacionGeneral} / ${entregables.length * 10}.00` %> </span>
+                        <input type="hidden" name="nrc" value="<%= proyecto.nrc %>">
+                    </header>
+                    <main>
+                        <%- include('../components/resumen-listaEntregables.component.ejs') %>
+                    </main>
+                </section>
+            </main>
+        </section>
+    </main>
+</div>
+<script src="/public/js/eliminarProyecto.js" type="module"></script>
+<%- include('../../template/footer.ejs') %>

@@ -1,0 +1,28 @@
+<nav>
+    <ul>
+        <li>
+            <a href="/alumno/misProyectos" class="<%= menuSelection == 'Proyectos' ? 'nav-option active' : 'nav-option' %>">
+                <i class="fas fa-pencil-ruler"></i>
+                <span>Proyectos</span>
+            </a>
+        </li>
+        <li>
+            <a href="/alumno/misTareas" class="<%= menuSelection == 'Tareas' ? 'nav-option active' : 'nav-option' %>">
+                <i class="fas fa-tasks"></i>
+                <span>Tareas</span>
+            </a>
+        </li>
+        <li>
+            <a href="/alumno/misNotificaciones" class="<%= menuSelection == 'Notificaciones' ? 'nav-option active' : 'nav-option' %>">
+                <i class="fas fa-bell"></i>
+                <span>Notificaciones</span>
+            </a>
+        </li>
+        <li>
+            <a href="#" id="sign-out" class="<%= menuSelection == 'Cerrar Sesión' ? 'nav-option active' : 'nav-option' %>">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Cerrar sesión</span>
+            </a>
+        </li>
+    </ul>
+</nav>
