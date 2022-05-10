@@ -1,5 +1,5 @@
 :root {
-  --primary-color: #007bff;
+  --primary-color: #ff637d;
   --text: rgb(71, 71, 71);
   --shadow: rgba(0, 0, 0, 0.15);
 }
@@ -22,7 +22,7 @@
 }
 
 .main-grid > main {
-  background: white;
+  background: #eaf2e3;
   grid-area: main;
   margin: 0 1rem 1rem;
 }
@@ -42,7 +42,7 @@ header .profile {
 nav {
   height: 100%;
   width: 100%;
-  background: white;
+  background: #eaf2e3   ;
   border-radius: 2.5rem 2.5rem 0 0;
   box-shadow: 0 -5px 10px var(--shadow);
   overflow: hidden;
@@ -213,4 +213,8 @@ p {
 
 body {
   background: linear-gradient(to right, #eaf2e3, #eaf2e3);
+}
+
+.bg-color_1 {
+  background: #66d7d1 ;
 }
