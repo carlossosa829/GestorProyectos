@@ -1,1 +1,1 @@
-export const API_URL = 'http://localhost:3300/api/v1/'
+export const API_URL = 'https://mdw-pa-backend.herokuapp.com/api/v1'
