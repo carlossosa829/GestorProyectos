@@ -210,3 +210,7 @@ p {
     position: relative;
   }
 }
+
+body {
+  background: linear-gradient(to right, #eaf2e3, #eaf2e3);
+}
